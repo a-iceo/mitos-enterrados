@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   },
   description: "Investigaciones paranormales, fenómenos inexplicables y evidencias perturbadoras de todo el mundo.",
   metadataBase: new URL("https://mitos-enterrados.vercel.app"),
+  verification: {
+    google: "bYtU1NUr1KSo1e0UBMcxEKNFAY9YqmgVFlWWg05kxF0",
+  },
   openGraph: {
     siteName: "Mitos Enterrados",
     type: "website",
