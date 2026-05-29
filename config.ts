@@ -1,8 +1,11 @@
 export const CONFIG = {
-  facebookFanpage: "https://www.facebook.com/MitosEnterrados",
-  bloggerBlog: "https://mitosenterrados.blogspot.com/",
+  destinations: {
+    facebook: "https://www.facebook.com/MitosEnterrados",
+    blog: "https://mitosenterrados.blogspot.com/",
+  },
+
   ganchos: [
-    "fotos-reales-de",
+    "la-leyenda-de",
     "la-leyenda-prohibida-de",
     "el-secreto-oscuro-de",
     "el-misterio-sin-resolver-de",
@@ -11,8 +14,10 @@ export const CONFIG = {
     "el-ritual-olvidado-de",
     "evidencias-perturbadoras-de",
     "la-historia-que-nadie-cuenta-de",
-    "el-caso-cerrado-de"
+    "el-caso-cerrado-de",
+    "fotos-reales-de",
   ],
+
   sujetos: [
     "fantasmas",
     "aliens",
@@ -27,8 +32,9 @@ export const CONFIG = {
     "maldiciones-antiguas",
     "seres-de-luz",
     "poltergeist",
-    "leyendas-urbanas"
+    "leyendas-urbanas",
   ],
+
   ubicaciones: [
     "mexico",
     "espana",
@@ -51,8 +57,9 @@ export const CONFIG = {
     "vaticano",
     "area-51",
     "piramides-de-egipto",
-    "amazonas"
+    "amazonas",
   ],
+
   intenciones: [
     "fotos-reales",
     "evidencia-grabada",
@@ -63,6 +70,6 @@ export const CONFIG = {
     "teorias-conspirativas",
     "pruebas-irrefutables",
     "relatos-de-sobrevivientes",
-    "videos-filtrados"
-  ]
+    "videos-filtrados",
+  ],
 };

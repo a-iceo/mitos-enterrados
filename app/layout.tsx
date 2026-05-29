@@ -1,19 +1,38 @@
 import type { Metadata } from "next";
-import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Mitos Enterrados",
-  description: "Descubre los misterios y leyendas ocultas",
+  title: {
+    default: "Mitos Enterrados · Investigaciones Paranormales",
+    template: "%s | Mitos Enterrados",
+  },
+  description: "Investigaciones paranormales, fenómenos inexplicables y evidencias perturbadoras de todo el mundo.",
+  metadataBase: new URL("https://mitos-enterrados.vercel.app"),
+  openGraph: {
+    siteName: "Mitos Enterrados",
+    type: "website",
+    locale: "es_ES",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="es">
-      <body className="antialiased">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
