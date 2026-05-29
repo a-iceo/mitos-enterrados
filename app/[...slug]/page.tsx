@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { CONFIG } from "@/config";
+import RelatedMysteries from "@/components/RelatedMysteries";
 import {
   parseSlug,
   readableComponents,
@@ -40,13 +40,6 @@ function getRelatedSlugs(
   }
 
   return related.slice(0, 5);
-}
-
-function toReadable(slug: string): string {
-  return slug
-    .split("-")
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -156,18 +149,7 @@ export default function MitoPage({ params }: Props) {
           </div>
         </div>
 
-        <div className="related">
-          <div className="related-title">⬡ Otros Misterios Relacionados</div>
-          <div className="related-grid">
-            {relatedSlugs.map((slug) => (
-              <Link key={slug} href={`/${slug}`} className="related-link">
-                <span className="related-icon">🕯</span>
-                <span className="related-text">{toReadable(slug)}</span>
-                <span className="related-arrow">→</span>
-              </Link>
-            ))}
-          </div>
-        </div>
+        <RelatedMysteries slugs={relatedSlugs} />
 
         <div className="footer">
           <span>© Mitos Enterrados</span>
