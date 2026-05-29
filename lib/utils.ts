@@ -11,20 +11,49 @@ const commonWordsToClean = new Set([
   "en", "de", "la", "el", "los", "las", "del", "al", "y", "e", "u", "o", "a", "para", "por", "con", "sin", "sobre", "ante", "bajo", "contra", "desde", "hasta", "entre", "durante", "mediante", "según", "tras", "via"
 ]);
 
+// Limpiar un string de palabras comunes al principio/final
+const cleanString = (str: string): string => {
+  const parts = str.toLowerCase().split(" ").filter(w => w.trim().length > 0);
+  // Quitar palabras comunes del principio
+  while (parts.length > 0 && commonWordsToClean.has(parts[0])) {
+    parts.shift();
+  }
+  // Quitar palabras comunes del final
+  while (parts.length > 0 && commonWordsToClean.has(parts[parts.length - 1])) {
+    parts.pop();
+  }
+  return parts.join(" ");
+};
+
+// Capitalizar primera letra y el resto en minúsculas
+const capitalize = (str: string): string => {
+  if (!str) return str;
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};
+
 export function decomposeSlug(slugParts: string[]): SlugComponents {
   const slug = slugParts.join("-");
-  const words = slug.split("-").filter(word => word.trim().length > 0); // Limpiar espacios vacíos
+  let words = slug.split("-").filter(word => word.trim().length > 0);
+  
+  // Eliminar cualquier "en" que esté separado antes de la ubicación
+  const filteredWords = [];
+  for (let i = 0; i < words.length; i++) {
+    // Si la palabra es "en" y la siguiente es una ubicación potencial, saltarla
+    if (words[i] === "en" && i < words.length - 1) {
+      continue;
+    }
+    filteredWords.push(words[i]);
+  }
+  words = filteredWords;
+  
   const totalWords = words.length;
-
   let gancho = "";
   let sujeto = "";
   let ubicacion = "";
   let intencion = "";
 
-  // Lógica mejorada para identificar componentes con mayor precisión
   if (totalWords >= 6) {
     gancho = words.slice(0, 3).join(" ");
-    // Encontrar la ubicación: buscar palabras que parezcan ubicaciones (o tomar la sección media)
     const midPoint = Math.floor(totalWords / 2);
     sujeto = words.slice(3, midPoint - 1).join(" ");
     ubicacion = words.slice(midPoint - 1, totalWords - 2).join(" ");
@@ -41,30 +70,13 @@ export function decomposeSlug(slugParts: string[]): SlugComponents {
     intencion = "secretos ocultos";
   }
 
-  // Limpiar preposiciones/artículos comunes al principio/fin de cada sección
-  const cleanSection = (str: string): string => {
-    const parts = str.toLowerCase().split(" ").filter(w => w.trim().length > 0);
-    while (parts.length > 0 && commonWordsToClean.has(parts[0])) {
-      parts.shift();
-    }
-    while (parts.length > 0 && commonWordsToClean.has(parts[parts.length - 1])) {
-      parts.pop();
-    }
-    return parts.join(" ");
-  };
-
   return {
-    gancho: capitalize(cleanSection(gancho) || "El misterio de"),
-    sujeto: capitalize(cleanSection(sujeto)),
-    ubicacion: capitalize(cleanSection(ubicacion)),
-    intencion: capitalize(cleanSection(intencion) || "secretos ocultos"),
+    gancho: capitalize(cleanString(gancho) || "El misterio de"),
+    sujeto: capitalize(cleanString(sujeto)),
+    ubicacion: capitalize(cleanString(ubicacion)),
+    intencion: capitalize(cleanString(intencion) || "secretos ocultos"),
     fullSlug: slug,
   };
-}
-
-function capitalize(str: string): string {
-  if (!str) return str;
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
 export function generateContent(components: SlugComponents): string {
