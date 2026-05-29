@@ -1,11 +1,18 @@
 import Link from "next/link";
+import { CONFIG } from "@/config";
+
+// Función para generar un slug aleatorio usando las listas de config
+const generateRandomSlug = () => {
+  const gancho = CONFIG.ganchos[Math.floor(Math.random() * CONFIG.ganchos.length)];
+  const sujeto = CONFIG.sujetos[Math.floor(Math.random() * CONFIG.sujetos.length)];
+  const ubicacion = CONFIG.ubicaciones[Math.floor(Math.random() * CONFIG.ubicaciones.length)];
+  const intencion = CONFIG.intenciones[Math.floor(Math.random() * CONFIG.intenciones.length)];
+  return `${gancho}-${sujeto}-en-${ubicacion}-${intencion}`;
+};
 
 export default function HomePage() {
-  const exampleSlugs = [
-    "la-leyenda-de-fantasmas-en-madrid-fotos-reales",
-    "el-misterio-del-castillo-en-segovia-secretos-ocultos",
-    "la-terrorifica-historia-de-la-casa-en-barcelona-testimonios",
-  ];
+  // Generar 10 ejemplos de slugs aleatorios
+  const exampleSlugs = Array.from({ length: 10 }, generateRandomSlug);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-black">
@@ -23,12 +30,12 @@ export default function HomePage() {
         <p className="text-xl md:text-2xl text-gray-300 mb-8">
           Descubre los misterios y leyendas ocultas de todo el mundo
         </p>
-        <div className="space-y-4">
-          <p className="text-gray-400">Ejemplos de páginas:</p>
+        <div className="space-y-4 mb-8">
+          <p className="text-gray-400">Ejemplos de páginas generadas automáticamente:</p>
           <div className="flex flex-wrap justify-center gap-2">
-            {exampleSlugs.map((slug) => (
+            {exampleSlugs.map((slug, index) => (
               <Link
-                key={slug}
+                key={index}
                 href={`/${slug}`}
                 className="px-4 py-2 bg-purple-900/50 text-purple-200 rounded-lg hover:bg-purple-800/70 transition-colors"
               >
@@ -37,6 +44,12 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+        <button
+          onClick={() => window.location.reload()}
+          className="px-6 py-3 bg-gradient-to-r from-purple-700 to-red-700 text-white font-semibold rounded-lg shadow-lg hover:from-purple-600 hover:to-red-600 transition-all"
+        >
+          Generar más ejemplos
+        </button>
       </div>
     </div>
   );
