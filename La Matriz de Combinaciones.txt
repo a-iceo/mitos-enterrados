@@ -1,0 +1,28 @@
+*"Trae, necesito construir una arquitectura de SEO Programático masivo para mi proyecto 'Mitos Enterrados'. El objetivo es generar potencialmente 10 millones de landing pages dinámicas utilizando un sistema de generación algorítmica.
+Configuración de Destinos (IMPORTANTE):
+Fanpage de Facebook: https://www.facebook.com/MitosEnterrados
+Blog de Blogger: https://mitosenterrados.blogspot.com/
+Crea un archivo llamado config.ts donde guardes estas URLs como constantes para que sean fáciles de editar en el futuro.
+Requerimientos Técnicos:
+Framework: Next.js 14+ con App Router, optimizado para despliegue gratuito en Vercel.
+Rutas Dinámicas: Implementa una ruta catch-all app/[...slug]/page.tsx.
+Motor de Descomposición de URL: Crea una función que tome el slug de la URL y lo divida para identificar: [Gancho], [Sujeto], [Ubicación] e [Intención].
+Ejemplo: Si el slug es 'la-leyenda-de-fantasmas-en-madrid-fotos-reales', la función debe extraer los componentes y convertirlos en palabras legibles.
+Generador de Contenido Algorítmico:
+Crea un sistema de 'Templates de Texto' para que cada página tenga un párrafo coherente y atractivo.
+Ejemplo: 'El misterio de {Sujeto} en {Ubicación} ha sido guardado por años, pero hoy revelamos las {Intención} que dejarán a todos impactados.'
+SEO On-Page Automático:
+Genera dinámicamente el <title> y la <meta description> usando las variables del slug para maximizar el CTR en Google.
+Diseño de Conversión (UI/UX):
+Estética: Dark Mode profesional, colores negro, púrpura oscuro y rojo sangre. Estilo paranormal y misterioso.
+Elementos: Imagen de fondo envolvente y dos botones de acción (CTA) prominentes:
+Botón 1: 'Ver Evidencias en Facebook' 
+→
+→
+ (Enlace a la Fanpage configurada).
+Botón 2: 'Leer Investigación Completa' 
+→
+→
+ (Enlace al Blog configurado).
+Optimización de Rendimiento: Implementa ISR (Incremental Static Regeneration) para que las páginas carguen instantáneamente y no saturen el servidor de Vercel.
+Dame el código completo: el archivo de configuración, la lógica de extracción del slug y la página dinámica."*
