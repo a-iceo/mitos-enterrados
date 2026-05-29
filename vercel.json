@@ -1,5 +1,0 @@
-{
-  "buildCommand": "npm install --package-lock-only=false && next build",
-  "devCommand": "next dev",
-  "installCommand": "npm install --legacy-peer-deps"
-}
